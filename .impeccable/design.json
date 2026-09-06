@@ -1,0 +1,182 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-06T10:39:25.000254+00:00",
+  "title": "Design System: Payroom",
+  "extensions": {
+    "colorMeta": {
+      "nav": {
+        "role": "primary",
+        "displayName": "Navigation indigo"
+      },
+      "accent": {
+        "role": "primary",
+        "displayName": "Action indigo"
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink"
+      },
+      "wash": {
+        "role": "neutral",
+        "displayName": "Cool canvas"
+      },
+      "sheet": {
+        "role": "neutral",
+        "displayName": "White sheet"
+      }
+    },
+    "typographyMeta": {
+      "headline": {
+        "displayName": "Page heading",
+        "purpose": "Page titles; reduces to 25px on phones."
+      },
+      "amount": {
+        "displayName": "Invoice amount",
+        "purpose": "Exact amount with tabular numerals and currency suffix."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "button-state",
+        "value": "background-color .16s ease-out,color .16s ease-out",
+        "purpose": "Button hover and color state changes."
+      },
+      {
+        "name": "inspector-reveal",
+        "value": "reveal .2s cubic-bezier(.16,1,.3,1)",
+        "purpose": "Clip-path entrance from inset(0 0 0 5%) to inset(0). Reduced motion disables animations and transitions."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "wide-min",
+        "value": "1500px"
+      },
+      {
+        "name": "compact-max",
+        "value": "1190px"
+      },
+      {
+        "name": "stacked-max",
+        "value": "900px"
+      },
+      {
+        "name": "phone-max",
+        "value": "600px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Implemented primary action treatment.",
+      "html": "<button class=\"ds-button-primary\">Approve invoice</button>",
+      "css": ".ds-button-primary{font-family:Manrope,sans-serif;cursor:pointer;transition:background-color .16s ease-out,color .16s ease-out;border-radius:6px;padding:10px 14px;font-size:12px;font-weight:650;min-height:40px;background:var(--nav);color:#fff;border:1px solid var(--nav)}.ds-button-primary:hover{background:#323d86}.ds-button-primary:focus-visible{outline:3px solid #8c96ed;outline-offset:3px}.ds-button-primary:disabled{cursor:wait;opacity:.55}@media(prefers-reduced-motion:reduce){.ds-button-primary{transition:none}}"
+    },
+    {
+      "name": "Secondary button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Implemented secondary action treatment.",
+      "html": "<button class=\"ds-button-secondary\">Refresh</button>",
+      "css": ".ds-button-secondary{font-family:Manrope,sans-serif;cursor:pointer;transition:background-color .16s ease-out,color .16s ease-out;border-radius:6px;padding:10px 14px;font-size:12px;font-weight:650;min-height:40px;background:#fff;color:var(--ink);border:1px solid #cbd0e0}.ds-button-secondary:hover{background:#f0f2fa}.ds-button-secondary:focus-visible{outline:3px solid #8c96ed;outline-offset:3px}.ds-button-secondary:disabled{cursor:wait;opacity:.55}@media(prefers-reduced-motion:reduce){.ds-button-secondary{transition:none}}"
+    },
+    {
+      "name": "Danger button",
+      "kind": "button",
+      "refersTo": "button-danger",
+      "description": "Implemented danger action treatment.",
+      "html": "<button class=\"ds-button-danger\">Cancel invoice</button>",
+      "css": ".ds-button-danger{font-family:Manrope,sans-serif;cursor:pointer;transition:background-color .16s ease-out,color .16s ease-out;border-radius:6px;padding:10px 14px;font-size:12px;font-weight:650;min-height:40px;background:#fff;color:var(--negative);border:1px solid #debfc4}.ds-button-danger:hover{background:#fff0f2}.ds-button-danger:focus-visible{outline:3px solid #8c96ed;outline-offset:3px}.ds-button-danger:disabled{cursor:wait;opacity:.55}@media(prefers-reduced-motion:reduce){.ds-button-danger{transition:none}}"
+    },
+    {
+      "name": "Text action",
+      "kind": "button",
+      "refersTo": "button-text",
+      "description": "Lightweight inline action.",
+      "html": "<button class=\"ds-text\">Copy address</button>",
+      "css": ".ds-text{font-family:Manrope,sans-serif;cursor:pointer;transition:background-color .16s ease-out,color .16s ease-out;border:0;background:transparent;color:var(--accent);font-weight:650;padding:6px 0;font-size:11px}.ds-text:hover{text-decoration:underline}.ds-text:focus-visible{outline:3px solid #8c96ed;outline-offset:3px}@media(prefers-reduced-motion:reduce){.ds-text{transition:none}}"
+    },
+    {
+      "name": "Invoice field",
+      "kind": "input",
+      "refersTo": "field",
+      "description": "Labelled invoice input.",
+      "html": "<label class=\"ds-label\" for=\"ds-reference\">Invoice reference</label><input class=\"ds-field\" id=\"ds-reference\" placeholder=\"INV-001\">",
+      "css": ".ds-label{display:block;font-family:Manrope,sans-serif;font-weight:650;font-size:11px;margin:18px 0 7px}.ds-field{font-family:Manrope,sans-serif;display:block;width:100%;border:1px solid #cbd1e0;border-radius:5px;padding:10px;background:#fff;color:var(--ink);font-size:12px;line-height:1.4}.ds-field::placeholder{color:#737a90}.ds-field:focus-visible{outline:3px solid #8c96ed;outline-offset:3px}"
+    },
+    {
+      "name": "Workspace navigation",
+      "kind": "nav",
+      "refersTo": "navigation-item",
+      "description": "Indigo rail navigation with active route.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Workspace\"><button class=\"ds-nav-item ds-active\" aria-current=\"page\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M6 3h9l3 3v15H6zM9 10h6M9 14h6M9 18h4\"/></svg>Invoices</button><button class=\"ds-nav-item\">Payment controls</button></nav>",
+      "css": ".ds-nav{display:grid;gap:8px;background:var(--nav);padding:18px}.ds-nav-item{font-family:Manrope,sans-serif;cursor:pointer;transition:background-color .16s ease-out,color .16s ease-out;border:0;background:transparent;color:#d6dbf8;display:flex;gap:12px;align-items:center;padding:13px 12px;border-radius:6px;text-align:left;font-size:12px;font-weight:600}.ds-nav-item:hover{background:#282f6a}.ds-nav-item.ds-active{background:#343d85;color:#fff}.ds-nav-item svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}.ds-nav-item:focus-visible{outline:3px solid #8c96ed;outline-offset:3px}@media(prefers-reduced-motion:reduce){.ds-nav-item{transition:none}}"
+    },
+    {
+      "name": "Payment state",
+      "kind": "chip",
+      "refersTo": "badge-paid",
+      "description": "Noninteractive confirmed payment label.",
+      "html": "<span class=\"ds-badge\">Paid</span>",
+      "css": ".ds-badge{font-family:Manrope,sans-serif;font-size:10px;font-weight:650;padding:4px 7px;border-radius:4px;display:inline-block;white-space:nowrap;background:#e6f3ed;color:var(--positive)}"
+    },
+    {
+      "name": "Working sheet",
+      "kind": "card",
+      "refersTo": "workbench",
+      "description": "Shared white bordered workbench and detail panel.",
+      "html": "<div class=\"ds-sheet\"><section class=\"ds-queue\">Invoice list</section><aside class=\"ds-inspector\">Invoice details</aside></div>",
+      "css": ".ds-sheet{font-family:Manrope,sans-serif;color:var(--ink);font-size:14px;display:grid;grid-template-columns:minmax(370px,1fr) 340px;min-height:610px;border:1px solid var(--line);border-radius:var(--radius);background:#fff;overflow:hidden}.ds-queue{min-width:0;display:flex;flex-direction:column}.ds-inspector{border-left:1px solid var(--line);padding:24px;min-width:0;background:#fff}@media(max-width:900px){.ds-sheet{grid-template-columns:1fr;min-height:400px}.ds-inspector{border-left:0;border-top:1px solid var(--line)}}"
+    },
+    {
+      "name": "Receipt disclosure",
+      "kind": "custom",
+      "refersTo": "receipt",
+      "description": "Native expandable payment receipt. Sample preview values are illustrative.",
+      "html": "<details class=\"ds-receipt\" open><summary>Payment \u00b7 Confirmed</summary><dl><dt>Transaction hash</dt><dd>Illustrative receipt hash</dd><dt>Result</dt><dd>Confirmed on the local chain</dd></dl></details>",
+      "css": ".ds-receipt{font-family:Manrope,sans-serif;color:var(--ink);margin-top:12px;font-size:11px}.ds-receipt summary{cursor:pointer;font-weight:600;color:var(--accent);padding:5px 0}.ds-receipt dl{font-size:10px}.ds-receipt dd{margin:5px 0 12px;word-break:break-all;color:var(--muted);line-height:1.6}.ds-receipt dt{font-weight:650}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Broadcast running order",
+    "overview": "Deep indigo framing, cool white working sheets and compact rows give Payroom the character of an operator's desk. The selected request and its exact terms share a visual context with the receipt. Manrope carries both labels and amounts; alignment and explicit status text do the organizational work.\n\nCandidate 7, seed 0544fe78, composition A is implemented. Local execution disclosures remain visible; the design verdict does not establish live sponsor execution.",
+    "keyCharacteristics": [
+      "Indigo navigation framing a light working surface.",
+      "Compact rows with a selected-item inspector.",
+      "Flat sheets, fine separators and small corner radii.",
+      "Explicit status labels and wrapping receipt metadata."
+    ],
+    "rules": [
+      {
+        "name": "The Separate Signals Rule",
+        "body": "Selection identifies the reviewed invoice; a labelled badge identifies its state.",
+        "section": "colors"
+      },
+      {
+        "name": "The Exact Amount Rule",
+        "body": "Preserve tabular alignment, visible currency and wrapping receipt values.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat Sheet Rule",
+        "body": "Separate content with borders and tonal changes rather than floating shadows.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do retain explicit state labels.",
+      "Do preserve phone gutters and final phone text sizes.",
+      "Do keep local execution disclosures visible.",
+      "Do respect keyboard focus and reduced motion."
+    ],
+    "donts": [
+      "Do not convert the invoice desk into balance tiles.",
+      "Do not add floating card shadows.",
+      "Do not make long receipt values inaccessible through truncation."
+    ]
+  }
+}
