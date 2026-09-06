@@ -43,7 +43,7 @@ Live KeeperHub execution, the final integration video and its required transacti
 ## Links and contact
 
 - Source: https://github.com/gylshaurya/payroom
-- Public product: pending deployment and verification.
+- Public product: https://gylshaurya.github.io/payroom/ (Sepolia read and owner-wallet workspace, verified).
 - Short video showing KeeperHub working: pending recording after live execution.
 - Transaction executed through KeeperHub: pending.
 - Contact: reuse the saved DoraHacks profile and the user's confirmed contact details. Never invent an X or Discord handle.

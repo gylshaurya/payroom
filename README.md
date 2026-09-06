@@ -2,6 +2,8 @@
 
 Payroom keeps a contributor invoice, its Safe approval and its payment receipt in one place. The owner approves exact terms once. A keeper can then pay within an on-chain daily limit. A repeated run cannot pay the same invoice twice.
 
+Public workspace: [gylshaurya.github.io/payroom](https://gylshaurya.github.io/payroom/). It reads the real Sepolia Safe without a login. KeeperHub execution remains pending.
+
 ## Run locally
 
 You need Node 24 or newer, Python 3 and Foundry (`forge` and `anvil`). The launcher uses an existing Node installation, including the bundled Codex runtime on this Mac, without changing global settings.
