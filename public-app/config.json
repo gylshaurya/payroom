@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "chainId": 11155111,
+  "environment": "Ethereum Sepolia",
+  "rpc": "https://ethereum-sepolia-rpc.publicnode.com",
+  "explorer": "https://sepolia.etherscan.io",
+  "safe": "0xB807E723343221736A4831B6995fCA9628D184E5",
+  "module": "0x0152Dd3602b0485A3cC00450Cb559B6d2190EFa5",
+  "token": "0x8AE2D92B36D5Bf9966A6A274555AcB9944541E43",
+  "owner": "0x6164566DB971d14053ef6b8a253CccAE9a010C54",
+  "keeper": "0xf0135C32368Cee89df899b259C54B530870Ca89b",
+  "recipients": [
+    "0xbc9CF2d96C6624890040DA54A8e42E8E2E9d4428"
+  ],
+  "safeVersion": "1.4.1",
+  "deployedBlock": 11646856,
+  "deployedBlockHash": "0xcf65eeaef08e408bd755e6d7e91144743cd3b715d96750b99e308b7146f39fc8",
+  "codeHashes": {
+    "safe": "0xd7d408ebcd99b2b70be43e20253d6d92a8ea8fab29bd3be7f55b10032331fb4c",
+    "module": "0xf8da57b6bf0e310550b9e7e8b261dc41ee37bd24e0acf2acb858240c21288704",
+    "token": "0x0f4c0504871bff5c19ad56cfc1091c3cd888f970ac0eb4fbb4329fac68f54d3d"
+  },
+  "keeperLive": false,
+  "demoInvoices": [
+    {
+      "id": "0x8899248d27ab6a7c74ee0d3b3f8666cfebd731d41ceca30e9ac212821f593096",
+      "reference": "DEMO-001",
+      "title": "Test contributor documentation review",
+      "contributor": "Demo contributor",
+      "recipient": "0xbc9CF2d96C6624890040DA54A8e42E8E2E9d4428",
+      "token": "0x8AE2D92B36D5Bf9966A6A274555AcB9944541E43",
+      "amount": "12500000",
+      "due": 0,
+      "chainId": 11155111,
+      "created": "2026-09-06T11:08:40.456Z"
+    }
+  ]
+}

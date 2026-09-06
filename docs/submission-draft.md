@@ -24,21 +24,21 @@ The Safe owner controls recipient and token permissions, the daily cap and pause
 
 Prepared: direct contract-call API, dry-run simulation, stable idempotency key, execution-status lookup and a manual workflow export using Web3 write-contract. The intended action is `execute(invoiceId)` on the Safe module.
 
-Current proof: local real Safe transactions and tested API request construction. A live KeeperHub execution has not yet been recorded. Replace this paragraph with the exact surfaces actually used and the verified transaction link after the release run.
+Current proof: real Safe transactions locally and on Sepolia, plus tested API request construction. A live KeeperHub execution has not yet been recorded. Replace this paragraph with the exact surfaces actually used and the verified transaction link after the release run.
 
 ## Testnet or mainnet?
 
-The current complete workspace runs on local Anvil, chain 31337. Sepolia, chain 11155111, is the planned public release. It uses fixed-supply pUSD test tokens with no value. No mainnet funds are used.
+The complete local workspace runs on Anvil, chain 31337. The public release reads a real Safe and module on Sepolia, chain 11155111, with verified owner approval, pause and resume. It uses fixed-supply pUSD test tokens with no value. No mainnet funds are used.
 
 ## What works?
 
 Invoice creation and validation, immutable Safe approvals, due time, cancellation, recipient/token controls, a UTC daily limit, pause, payment receipts, restart recovery and JSON export. The UI works on desktop and phone screens and supports keyboard use.
 
-Sixteen contract tests pass, including 256 fuzz cases. Eleven integration tests pass, including three concurrent requests producing one payment and a lost response recovered without another send. These are local test results, not an external audit.
+Sixteen contract tests pass, including 256 fuzz cases. Fifteen JavaScript tests pass, including three concurrent requests producing one payment and a lost response recovered without another send. These are local test results, not an external audit.
 
 ## What is unfinished?
 
-Live KeeperHub execution, Sepolia publication, the final integration video and its required transaction link. The current local service is not a public authenticated backend. The test token has simple transfer behavior; fee-on-transfer and rebasing assets are unsupported. An unknown send with no hash and no matching transaction still needs careful operator reconciliation.
+Live KeeperHub execution, the final integration video and its required transaction link. The current local service is not a public authenticated backend. The test token has simple transfer behavior; fee-on-transfer and rebasing assets are unsupported. An unknown send with no hash and no matching transaction still needs careful operator reconciliation.
 
 ## Links and contact
 

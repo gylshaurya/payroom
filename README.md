@@ -24,7 +24,7 @@ forge test -vv
 
 The tests start and stop a separate temporary Anvil instance on 18549. Keep that port and test HTTP port 4335 free. Tests use the actual Safe bytecode, not a fake Safe implementation.
 
-The contract suite has 16 tests, including 256 fuzz cases for exact transfers. It checks UTC limit resets, combined invoices, revoked permissions, keeper changes, failed token rollback and reentry through a real Safe proxy. The service suite has 11 tests, including concurrent runs and receipt recovery. See [contract review](docs/contract-review.md) for the limits of these checks.
+The contract suite has 16 tests, including 256 fuzz cases for exact transfers. It checks UTC limit resets, combined invoices, revoked permissions, keeper changes, failed token rollback and reentry through a real Safe proxy. The service suite has 11 tests, including concurrent runs and receipt recovery; four further tests cover the public workspace. See [contract review](docs/contract-review.md) for the limits of these checks.
 
 `npm ci` uses legacy peer resolution because Safe's package declares ethers 5 for its own tooling. Payroom consumes only its published ABI/bytecode and uses ethers 6 independently.
 
@@ -39,7 +39,7 @@ The contract suite has 16 tests, including 256 fuzz cases for exact transfers. I
 
 ## What still needs live verification
 
-Sepolia deployment, actual KeeperHub execution, a public app and the final demo are separate release steps. The free account allowance was checked on 6 September 2026, and both paid overage caps were set to zero and verified after reload. This does not establish testnet gas sponsorship or an actual sponsored payment. See [docs/keeperhub.md](docs/keeperhub.md).
+The Safe, module and test token are deployed on Sepolia, and the public wallet/read workspace is built. See [public release](docs/public-release.md). Actual KeeperHub execution and the final integration demo remain separate release steps. The free account allowance was checked on 6 September 2026, and both paid overage caps were set to zero and verified after reload. This does not establish testnet gas sponsorship or an actual sponsored payment. See [docs/keeperhub.md](docs/keeperhub.md).
 
 The contract is a hackathon testnet demonstration. Use only the included test token. Allowlisting a token trusts its transfer behavior; fee-on-transfer, rebasing and malicious tokens are unsupported. This code has not received an external security audit.
 
@@ -53,6 +53,9 @@ The HTTP service binds to loopback only and checks Host, Origin and a session to
 
 ## Project notes
 
+- [Public Sepolia release](docs/public-release.md)
+- [Setup and recovery](docs/setup.md)
+- [Submission draft](docs/submission-draft.md)
 - [Acceptance and milestones](acceptance.md)
 - [KeeperHub integration](docs/keeperhub.md)
 - [Safe contracts](https://github.com/safe-global/safe-smart-account)

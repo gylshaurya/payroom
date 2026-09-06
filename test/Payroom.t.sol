@@ -5,6 +5,7 @@ import {Payroom} from "../contracts/Payroom.sol";
 import {TestDollar} from "../contracts/TestDollar.sol";
 import {Safe} from "@safe-global/safe-contracts/contracts/Safe.sol";
 import {SafeProxy} from "@safe-global/safe-contracts/contracts/proxies/SafeProxy.sol";
+import {SafeProxyFactory} from "@safe-global/safe-contracts/contracts/proxies/SafeProxyFactory.sol";
 import {Enum} from "@safe-global/safe-contracts/contracts/common/Enum.sol";
 
 interface Vm {
@@ -46,9 +47,11 @@ contract PayroomTest {
 
     function setUp() public {
         vm.warp(100 days + 10 hours);
-        safe = Safe(payable(address(new SafeProxy(address(new Safe())))));
         address[] memory owners = new address[](1); owners[0] = address(this);
-        safe.setup(owners, 1, address(0), "", address(0), address(0), 0, payable(address(0)));
+        SafeProxyFactory factory = new SafeProxyFactory();
+        bytes memory initializer = abi.encodeCall(Safe.setup, (owners, 1, address(0), bytes(""), address(0), address(0), 0, payable(address(0))));
+        safe = Safe(payable(address(factory.createProxyWithNonce(address(new Safe()), initializer, 1))));
+        require(safe.isOwner(address(this)) && safe.getThreshold() == 1);
         module = new Payroom(address(safe), KEEPER);
         token = new TestDollar(address(safe), 1000e6);
         safeCall(address(safe), abi.encodeWithSignature("enableModule(address)", address(module)));
