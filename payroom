@@ -1,0 +1,16 @@
+#!/usr/bin/env python3
+"""Select an existing supported Node runtime without changing global settings."""
+import os, pathlib, shutil, subprocess, sys
+root = pathlib.Path(__file__).resolve().parent
+candidates = [shutil.which('node'), str(pathlib.Path.home()/'.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node')]
+for binary in filter(None,candidates):
+    try:
+        major = int(subprocess.check_output([binary,'-p','process.versions.node.split(".")[0]'],text=True).strip())
+        if major >= 24:
+            os.chdir(root)
+            args = sys.argv[1:] or ['start']
+            target = ['--test','--test-concurrency=1',*[str(p) for p in sorted((root/'test').glob('*.test.mjs'))]] if args[0]=='test' else [str(root/'scripts/runtime.mjs'),*args]
+            os.execv(binary,[binary,*target])
+    except (OSError,ValueError,subprocess.CalledProcessError):
+        continue
+raise SystemExit('Node 24 or newer is needed. Install it in your own user account, then rerun this command.')

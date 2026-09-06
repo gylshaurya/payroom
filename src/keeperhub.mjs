@@ -11,14 +11,15 @@ export function keeperRequest(config, invoiceId) {
   const key = `payroom-${keccak256(toUtf8Bytes(JSON.stringify(body))).slice(2)}`;
   return { endpoint: '/api/execute/contract-call', idempotencyKey: key, body };
 }
-export function keeperWorkflow(config, invoiceId, walletIntegrationId) {
+export function keeperWorkflow(config, invoiceId) {
   const { body } = keeperRequest(config, invoiceId);
-  if (typeof walletIntegrationId !== 'string' || !walletIntegrationId.trim()) throw new Error('A verified KeeperHub wallet integration is required.');
+  getAddress(config.keeper);
   return {
     name: `Payroom invoice ${invoiceId.slice(2, 10)}`,
+    enabled: false,
     nodes: [
       { id: 'trigger', type: 'trigger', data: { label: 'Approved invoice', type: 'trigger', config: { triggerType: 'Manual' } } },
-      { id: 'pay', type: 'action', data: { label: 'Pay approved invoice', type: 'action', config: { actionType: 'web3/write-contract', network: '11155111', contractAddress: body.contractAddress, abiFunction: 'execute', functionArgs: body.functionArgs, abi: body.abi, walletIntegrationId, gasLimitMultiplier: '1.2' } } }
+      { id: 'pay', type: 'action', data: { label: 'Pay approved invoice', type: 'action', config: { actionType: 'web3/write-contract', network: '11155111', contractAddress: body.contractAddress, abiFunction: 'execute', functionArgs: body.functionArgs, abi: body.abi, web3Connection: 'eoa', gasLimitMultiplier: '1.2' } } }
     ], edges: [{ id: 'trigger-pay', source: 'trigger', target: 'pay' }]
   };
 }

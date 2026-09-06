@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Payroom | Invoice desk</title><meta name="description" content="Approve contributor invoices, pay within Safe limits, and keep the receipt."><link rel="icon" href="/favicon.svg"><link rel="stylesheet" href="/style.css"><script type="module" src="/app.js"></script></head>
+<body>
+<!-- THESIS: An invoice running order keeps the payment and its proof in one working view, without balance tiles.
+OWN-WORLD: Deep indigo navigation, cool white sheets, Manrope, compact rows, square alignment and precise status labels.
+STORY: Review exact terms, approve once, execute within Safe limits, then check the receipt.
+FIRST VIEWPORT: A narrow left rail, broad invoice list and a 360px right inspector. New invoice sits at the top right; filters sit above the list.
+FORM: Broadcast running order, candidate 7, seed 0544fe78; composition A selected under the user's delegated design choice.
+FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md -->
+<a class="skip" href="#main">Skip to invoices</a>
+<aside class="rail">
+  <a class="wordmark" href="/" aria-label="Payroom home"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h10a5 5 0 0 1 0 10H9v5H4z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9 10h5" stroke="currentColor" stroke-width="2"/></svg>Payroom</a>
+  <div class="workspace-name">Contributor payments<span>One Safe workspace</span></div>
+  <nav aria-label="Workspace"><button class="nav-item active" data-view="invoices"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h9l3 3v15H6zM9 10h6M9 14h6M9 18h4"/></svg>Invoices</button><button class="nav-item" data-view="controls"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 17h16M8 4v6M16 14v6"/></svg>Payment controls</button><button class="nav-item" data-view="activity"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 7v5l3 2"/></svg>Activity</button></nav>
+  <div class="mobile-environment">Local test chain · KeeperHub not connected</div>
+  <div class="rail-bottom"><div class="network"><span class="dot"></span>Local test chain<span>pUSD has no money value</span></div><p>KeeperHub live execution<br><strong>Not connected yet</strong></p></div>
+</aside>
+<main id="main" tabindex="-1">
+  <header class="topbar"><div><h1 id="page-title">Invoices</h1><p id="page-description">Approve the work. Keep the receipt.</p></div><div class="header-actions"><button class="secondary" id="refresh">Refresh</button><button class="primary" id="new-invoice"><span aria-hidden="true">+</span> New invoice</button></div></header>
+  <div id="notice" role="status" aria-live="polite" hidden></div>
+  <div id="pending" hidden></div>
+  <section id="invoice-view">
+    <div class="toolbar"><div class="filters" role="group" aria-label="Filter invoices"><button class="filter active" data-filter="all">All <span>0</span></button><button class="filter" data-filter="draft">Draft <span>0</span></button><button class="filter" data-filter="approved">Approved <span>0</span></button><button class="filter" data-filter="paid">Paid <span>0</span></button><button class="filter" data-filter="cancelled">Cancelled <span>0</span></button></div><label class="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="6"/><path d="m15 15 5 5"/></svg><input id="search" type="search" placeholder="Find an invoice" aria-label="Find an invoice"></label></div>
+    <div class="workbench"><section class="queue" aria-label="Invoice list"><div id="queue-content"><p class="loading">Connecting to the local chain...</p></div><footer class="queue-footer"><span id="queue-summary">Loading invoices</span><button id="export" class="text-button">Export records</button></footer></section><aside id="inspector" aria-label="Invoice details"></aside></div>
+  </section>
+  <section id="controls-view" hidden></section><section id="activity-view" hidden></section>
+  <footer class="app-footer">Local demonstration. Safe owner and keeper actions use separate local test accounts. <button id="sample" class="text-button">Add sample invoices</button></footer>
+</main>
+</body></html>

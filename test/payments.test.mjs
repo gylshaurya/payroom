@@ -8,7 +8,7 @@ import { Contract, id as hashId } from 'ethers';
 import { application } from '../src/server.mjs';
 import { Store } from '../src/store.mjs';
 import { Chain } from '../src/chain.mjs';
-import { KeeperHub, keeperRequest } from '../src/keeperhub.mjs';
+import { KeeperHub, keeperRequest, keeperWorkflow } from '../src/keeperhub.mjs';
 let app, process, directory, sequence=0;
 const invoice = (overrides={}) => app.store.create({reference:`TEST-${++sequence}`, title:'Contributor work', contributor:'Local test contributor', recipient:app.chain.config.recipients[0], amount:'8.75', ...overrides},app.chain.config);
 before(async () => {
@@ -98,6 +98,11 @@ test('KeeperHub request is canonical, Sepolia only and cannot rotate on a retry'
   const config={...app.chain.config,chainId:11155111};
   const request=keeperRequest(config,hashId('keeper-test'));
   assert.deepEqual(request,keeperRequest(config,hashId('keeper-test')));
+  const workflow=keeperWorkflow(config,hashId('keeper-test'));
+  assert.equal(workflow.enabled,false);
+  assert.equal(workflow.nodes[1].data.config.web3Connection,'eoa');
+  assert.equal(workflow.nodes[1].data.config.abiFunction,'execute');
+  assert.equal(workflow.nodes[1].data.config.walletIntegrationId,undefined);
   assert.equal(typeof request.body.abi,'string');assert.deepEqual(JSON.parse(request.body.functionArgs),[hashId('keeper-test')]);
   assert.throws(()=>keeperRequest(app.chain.config,hashId('keeper-test')));
   let calls=0;
