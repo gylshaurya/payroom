@@ -1,0 +1,52 @@
+{
+  "name": "candidate",
+  "status": "planned_not_recorded",
+  "environment": "Local Anvil",
+  "scenes": [
+    {
+      "id": "invoice",
+      "hold_seconds": 12,
+      "caption": "This is a test invoice for contributor work. Saving it does not approve a payment."
+    },
+    {
+      "id": "terms",
+      "hold_seconds": 11,
+      "caption": "The recipient, token, amount and due time are the exact terms the owner reviews."
+    },
+    {
+      "id": "approve",
+      "hold_seconds": 13,
+      "caption": "The Safe approves those terms on chain. The keeper cannot replace them later."
+    },
+    {
+      "id": "controls",
+      "hold_seconds": 14,
+      "caption": "The owner sets allowed recipients and a daily cap. Pause stops new payments."
+    },
+    {
+      "id": "pay",
+      "hold_seconds": 14,
+      "caption": "This preview uses a local keeper. It checks the approved terms before paying."
+    },
+    {
+      "id": "receipt",
+      "hold_seconds": 16,
+      "caption": "The receipt shows the actual payment. This invoice cannot be paid a second time."
+    },
+    {
+      "id": "activity",
+      "hold_seconds": 12,
+      "caption": "The activity log keeps each attempt. Unknown sends wait for a receipt check."
+    },
+    {
+      "id": "export",
+      "hold_seconds": 10,
+      "caption": "The invoice and receipts can be exported together as a JSON record."
+    },
+    {
+      "id": "limits",
+      "hold_seconds": 12,
+      "caption": "Local preview. The final release still needs a real KeeperHub transaction on Sepolia."
+    }
+  ]
+}

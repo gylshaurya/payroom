@@ -1,0 +1,34 @@
+{
+  "baseline": {
+    "planned_hold_seconds": 114,
+    "planned_caption_rates": [
+      5.43,
+      6.83,
+      7.27,
+      5.92,
+      5.5,
+      5.0,
+      6.33,
+      6.7,
+      7.08
+    ],
+    "actual_duration": null,
+    "actual_first_useful_action": null
+  },
+  "candidate": {
+    "planned_hold_seconds": 114,
+    "planned_caption_rates": [
+      6.83,
+      7.27,
+      5.92,
+      5.43,
+      5.5,
+      5.0,
+      6.33,
+      6.7,
+      7.08
+    ],
+    "actual_duration": null,
+    "actual_first_useful_action": null
+  }
+}
