@@ -5,7 +5,7 @@ const money = amount => { const value=BigInt(amount);const fraction=(value%10000
 const date = value => value ? new Date(value * 1000).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}) : 'On approval';
 const short = value => `${value.slice(0,8)}...${value.slice(-6)}`;
 const label = state => state[0].toUpperCase()+state.slice(1);
-let data, selected=null, filter='all', view='invoices', creating=false, busy=false;
+let data, selected=null, filter='all', view='invoices', creating=false, busy=false, draftValues={};
 
 function notice(message,error=false) { const el=$('#notice');el.hidden=!message;el.className=`notice${error?' error':''}`;el.textContent=message; }
 async function api(path,body) {
@@ -70,11 +70,15 @@ function receiptDetails(op,open=false) {
   const names={approve:'Approval',pay:'Payment',cancel:'Cancellation',pause:'Pause setting',cap:'Daily cap'};
   return `<details class="receipt-item" ${open?'open':''}><summary>${names[op.kind]||escape(op.kind)} · ${label(op.state)}</summary><dl>${op.receipt?`<dt>Transaction hash</dt><dd>${op.receipt.hash}</dd><dt>Block / chain</dt><dd>${op.receipt.blockNumber} / ${op.receipt.chainId} (local)</dd><dt>Result</dt><dd>${op.receipt.status===1&&!op.receipt.innerFailed?'Confirmed on the local chain':'Rejected on the local chain'}</dd>`:`<dt>Receipt</dt><dd>${op.hash||'Not found yet. Check the receipt before another attempt.'}</dd>`}${op.error?`<dt>Issue</dt><dd>${escape(op.error)}</dd>`:''}</dl></details>`;
 }
-function newInvoice(){view='invoices';creating=true;render();$('#reference').focus();if(innerWidth<=900)$('#inspector').scrollIntoView({block:'start'});}
+function newInvoice(){view='invoices';creating=true;draftValues={};render();$('#reference').focus();if(innerWidth<=900)$('#inspector').scrollIntoView({block:'start'});}
 function renderForm() {
   $('#inspector').innerHTML=`<div class="detail-heading"><h2>New invoice</h2><button class="close-detail" id="close-form" aria-label="Close new invoice"><svg viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div><p class="detail-description">Save the request first. Approval is a separate step.</p><form id="invoice-form"><label for="reference">Invoice reference</label><input id="reference" name="reference" required maxlength="50" placeholder="INV-001" autocomplete="off"><label for="contributor">Contributor</label><input id="contributor" name="contributor" required maxlength="80" placeholder="Name or team"><label for="description">Work description</label><textarea id="description" name="title" required maxlength="180" placeholder="What work is this payment for?"></textarea><label for="recipient">Recipient address</label><select id="recipient" name="recipient">${data.config.recipients.map((a,n)=>`<option value="${a}">Local contributor ${n+1} · ${short(a)}</option>`).join('')}</select><small>These three test accounts are on the Safe allowlist. Full addresses are in Payment controls.</small><label for="amount">Amount in pUSD</label><input id="amount" name="amount" inputmode="decimal" required pattern="[0-9]+(\.[0-9]{1,6})?" placeholder="25.00"><small>Local test tokens only. Daily cap: ${money(data.cap)} pUSD.</small><label for="due">Due time (optional)</label><input id="due" name="due" type="datetime-local"><small>Leave blank to allow payment after approval. Time uses this device’s timezone.</small><div class="form-actions"><button class="primary" type="submit">Save draft</button><button class="secondary" type="button" id="cancel-form">Discard</button></div></form>`;
-  $('#close-form').onclick=$('#cancel-form').onclick=()=>{creating=false;renderInspector();};
-  $('#invoice-form').onsubmit=event=>{event.preventDefault();const input=Object.fromEntries(new FormData(event.target));run(async()=>{const i=await api('/api/invoices',input);selected=i.id;creating=false;return i;},'Draft saved. Review its terms before approval.');};
+  const form=$('#invoice-form');
+  for(const [name,value] of Object.entries(draftValues)){const field=form.elements.namedItem(name);if(field)field.value=value;}
+  form.oninput=()=>{draftValues=Object.fromEntries(new FormData(form));};
+  form.onchange=form.oninput;
+  $('#close-form').onclick=$('#cancel-form').onclick=()=>{creating=false;draftValues={};renderInspector();};
+  $('#invoice-form').onsubmit=event=>{event.preventDefault();const input=Object.fromEntries(new FormData(event.target));run(async()=>{const i=await api('/api/invoices',input);selected=i.id;creating=false;draftValues={};return i;},'Draft saved. Review its terms before approval.');};
 }
 function renderControls() {
   const left=BigInt(data.cap)>BigInt(data.spent)?BigInt(data.cap)-BigInt(data.spent):0n;
