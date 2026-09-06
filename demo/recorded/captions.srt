@@ -1,0 +1,54 @@
+1
+00:00:00,000 --> 00:00:06,023
+Payroom keeps an invoice, its approval and its receipt together. This is a local
+test.
+
+2
+00:00:06,023 --> 00:00:18,302
+Create a test invoice for 12.50 pUSD. A saved draft does not approve a payment.
+
+3
+00:00:18,302 --> 00:00:27,919
+Review the work, full recipient address and exact amount before approving.
+
+4
+00:00:27,919 --> 00:00:38,295
+The Safe records these exact terms on chain. The keeper cannot replace them.
+
+5
+00:00:38,296 --> 00:00:50,529
+Pause stops the keeper, including for invoices that are already approved.
+
+6
+00:00:50,529 --> 00:01:01,315
+The owner can resume payments. The invoice keeps its approved terms.
+
+7
+00:01:01,315 --> 00:01:11,553
+The local keeper now pays 12.50 pUSD from the Safe, within its daily limit.
+
+8
+00:01:11,553 --> 00:01:23,230
+This receipt is from the local chain. A paid invoice cannot be paid a second time.
+
+9
+00:01:23,230 --> 00:01:34,273
+The activity log keeps each approval, control change and payment attempt.
+
+10
+00:01:34,273 --> 00:01:43,832
+Export the invoice and its chain receipts together as a JSON record.
+
+11
+00:01:43,832 --> 00:02:04,474
+This is a separate Sepolia example, with a real Safe approval on the public
+testnet.
+
+12
+00:02:04,474 --> 00:02:16,890
+The approval receipt can be checked on Etherscan. This invoice is still unpaid.
+
+13
+00:02:16,890 --> 00:02:28,900
+KeeperHub execution is still pending. Its actual payment and receipt will be in
+the final demo.

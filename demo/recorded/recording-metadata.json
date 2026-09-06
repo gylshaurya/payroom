@@ -1,0 +1,93 @@
+{
+  "duration_seconds": 148.9,
+  "source_fps": 10,
+  "output_fps": 30,
+  "width": 1600,
+  "height": 900,
+  "audio": false,
+  "captions": 13,
+  "caption_peak_characters_per_second": 14.277113235811857,
+  "timeline_scale": 1.002767881795958,
+  "first_useful_action_seconds": 6.02362666594832,
+  "live_limit": "Local payment plus separate real Sepolia approval. No KeeperHub payment yet.",
+  "scenes": [
+    {
+      "id": "intro",
+      "start": 0.0,
+      "end": 6.007,
+      "caption": "Payroom keeps an invoice, its approval and its receipt together. This is a local test."
+    },
+    {
+      "id": "create",
+      "start": 6.007,
+      "end": 18.252,
+      "caption": "Create a test invoice for 12.50 pUSD. A saved draft does not approve a payment."
+    },
+    {
+      "id": "draft",
+      "start": 18.252,
+      "end": 27.842,
+      "caption": "Review the work, full recipient address and exact amount before approving."
+    },
+    {
+      "id": "approve",
+      "start": 27.842,
+      "end": 38.19,
+      "caption": "The Safe records these exact terms on chain. The keeper cannot replace them."
+    },
+    {
+      "id": "pause",
+      "start": 38.191,
+      "end": 50.39,
+      "caption": "Pause stops the keeper, including for invoices that are already approved."
+    },
+    {
+      "id": "resume",
+      "start": 50.39,
+      "end": 61.146,
+      "caption": "The owner can resume payments. The invoice keeps its approved terms."
+    },
+    {
+      "id": "pay",
+      "start": 61.146,
+      "end": 71.356,
+      "caption": "The local keeper now pays 12.50 pUSD from the Safe, within its daily limit."
+    },
+    {
+      "id": "receipt",
+      "start": 71.356,
+      "end": 83.001,
+      "caption": "This receipt is from the local chain. A paid invoice cannot be paid a second time."
+    },
+    {
+      "id": "activity",
+      "start": 83.001,
+      "end": 94.013,
+      "caption": "The activity log keeps each approval, control change and payment attempt."
+    },
+    {
+      "id": "export",
+      "start": 94.013,
+      "end": 103.546,
+      "caption": "Export the invoice and its chain receipts together as a JSON record."
+    },
+    {
+      "id": "public",
+      "start": 103.546,
+      "end": 124.131,
+      "caption": "This is a separate Sepolia example, with a real Safe approval on the public testnet."
+    },
+    {
+      "id": "public-receipt",
+      "start": 124.131,
+      "end": 136.513,
+      "caption": "The approval receipt can be checked on Etherscan. This invoice is still unpaid."
+    },
+    {
+      "id": "pending",
+      "start": 136.513,
+      "end": 148.489,
+      "caption": "KeeperHub execution is still pending. Its actual payment and receipt will be in the final demo."
+    }
+  ]
+}

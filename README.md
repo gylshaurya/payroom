@@ -2,6 +2,8 @@
 
 Payroom keeps a contributor invoice, its Safe approval and its payment receipt in one place. The owner approves exact terms once. A keeper can then pay within an on-chain daily limit. A repeated run cannot pay the same invoice twice.
 
+[Watch the recorded preview](https://github.com/gylshaurya/payroom/releases/tag/preview-v1). It shows local payment and a separate Sepolia approval, with the missing KeeperHub execution clearly labelled.
+
 Public workspace: [gylshaurya.github.io/payroom](https://gylshaurya.github.io/payroom/). It reads the real Sepolia Safe without a login. KeeperHub execution remains pending.
 
 ## Run locally
