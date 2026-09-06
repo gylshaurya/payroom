@@ -1,0 +1,15 @@
+.env
+.env.*
+!.env.example
+node_modules/
+.next/
+dist/
+coverage/
+.wallets/
+*.keystore
+*.log
+.local/
+out/
+cache/
+test-results/
+.impeccable/sketches/

@@ -1,0 +1,22 @@
+{
+  "selected_idea": {
+    "acceptance_test": "Two concurrent runs produce one payment. A changed payee or excess amount is rejected. Pausing prevents new transfers. Show an actual KeeperHub execution and explorer receipt.",
+    "brief": "A payment desk for small teams using Safe. Approve an invoice once, then let KeeperHub pay it within a fixed allowance and save the receipt.",
+    "difference": "Safe already supports spending limits. The proposed value is the invoice lifecycle, duplicate prevention and clear recovery when a transaction is pending.",
+    "id": "payroom",
+    "name": "Payroom",
+    "problem": "Payment requests, multisig approvals and final receipts often live in different places.",
+    "risk": "More contract work than the other options. Owner approval is required to enable a module. The built-in KeeperHub Safe plugin is read-only, so use verified direct contract calls.",
+    "scope": "Sepolia-only demo with test tokens, one Safe, explicit recipient and token allowlists, per-invoice nonce, daily cap, pause control and receipt reconciliation.",
+    "sources": [
+      "https://docs.safe.global/home/ai-agent-quickstarts/agent-with-spending-limit",
+      "https://docs.keeperhub.com/plugins/safe",
+      "https://keeperhub.com/pricing"
+    ],
+    "sponsor_use": "KeeperHub schedules checks and executes a constrained payment through a Safe module or compatible adapter. Safe remains the named existing protocol.",
+    "user": "Small protocol teams paying recurring contributors."
+  },
+  "review_digest": "4a7b03e645a4a5dffabd1f1add75207eb14abf570aac69f8122c3fa972556110",
+  "source": "Explicit user selection in the Hacky ledger",
+  "status": "Scope selected; entry and runtime checks remain pending"
+}
