@@ -18,10 +18,13 @@ Create an invoice, approve it, then select **Run local keeper**. These are real 
 
 ```sh
 ./payroom test
+forge test -vv
 ./payroom stop
 ```
 
 The tests start and stop a separate temporary Anvil instance on 18549. Keep that port and test HTTP port 4335 free. Tests use the actual Safe bytecode, not a fake Safe implementation.
+
+The contract suite has 16 tests, including 256 fuzz cases for exact transfers. It checks UTC limit resets, combined invoices, revoked permissions, keeper changes, failed token rollback and reentry through a real Safe proxy. The service suite has 11 tests, including concurrent runs and receipt recovery. See [contract review](docs/contract-review.md) for the limits of these checks.
 
 `npm ci` uses legacy peer resolution because Safe's package declares ethers 5 for its own tooling. Payroom consumes only its published ABI/bytecode and uses ethers 6 independently.
 
@@ -36,7 +39,7 @@ The tests start and stop a separate temporary Anvil instance on 18549. Keep that
 
 ## What still needs live verification
 
-Sepolia deployment, free KeeperHub account allowance, actual KeeperHub execution, a public app and the final demo are separate release steps. The current local build does not prove these. See [docs/keeperhub.md](docs/keeperhub.md).
+Sepolia deployment, actual KeeperHub execution, a public app and the final demo are separate release steps. The free account allowance was checked on 6 September 2026, and both paid overage caps were set to zero and verified after reload. This does not establish testnet gas sponsorship or an actual sponsored payment. See [docs/keeperhub.md](docs/keeperhub.md).
 
 The contract is a hackathon testnet demonstration. Use only the included test token. Allowlisting a token trusts its transfer behavior; fee-on-transfer, rebasing and malicious tokens are unsupported. This code has not received an external security audit.
 
