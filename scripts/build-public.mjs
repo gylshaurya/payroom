@@ -1,4 +1,5 @@
 import {build} from 'esbuild';
+import {createHash} from 'node:crypto';
 import {readFile,writeFile,mkdir,cp} from 'node:fs/promises';
 import {moduleArtifact,safeArtifact} from '../src/chain.mjs';
 await writeFile('public-app/abis.json',JSON.stringify({module:moduleArtifact().abi,safe:safeArtifact().abi}));
@@ -14,6 +15,8 @@ html=html.replace('Local demonstration. Safe owner and keeper actions use separa
 html=html.replace('<button id="sample" class="text-button">','<button id="sample" class="text-button" hidden>');
 const releaseConfig=JSON.parse(await readFile('public-app/config.json','utf8'));
 if(releaseConfig.keeperLive)html=html.replace('Not connected yet','Sepolia payment verified');
+const bundleVersion=createHash('sha256').update(await readFile('dist/app.js')).digest('hex').slice(0,12);
+html=html.replace('src="app.js"',`src="app.js?v=${bundleVersion}"`);
 await writeFile('dist/index.html',html);
 await writeFile('dist/style.css',(await readFile('public/style.css','utf8')).replaceAll("url('/fonts/","url('fonts/"));
 await cp('public/fonts','dist/fonts',{recursive:true});await cp('public/favicon.svg','dist/favicon.svg');
