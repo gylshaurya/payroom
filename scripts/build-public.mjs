@@ -12,6 +12,8 @@ html=html.replaceAll('Local test chain','Ethereum Sepolia').replace('Connecting 
 html=html.replace('<button class="secondary" id="refresh">','<button class="secondary" id="connect-owner">Connect owner wallet</button><button class="secondary" id="refresh">');
 html=html.replace('Local demonstration. Safe owner and keeper actions use separate local test accounts.','Public testnet workspace. Read receipts without a wallet. Only the configured Safe owner can approve invoices.');
 html=html.replace('<button id="sample" class="text-button">','<button id="sample" class="text-button" hidden>');
+const releaseConfig=JSON.parse(await readFile('public-app/config.json','utf8'));
+if(releaseConfig.keeperLive)html=html.replace('Not connected yet','Sepolia payment verified');
 await writeFile('dist/index.html',html);
 await writeFile('dist/style.css',(await readFile('public/style.css','utf8')).replaceAll("url('/fonts/","url('fonts/"));
 await cp('public/fonts','dist/fonts',{recursive:true});await cp('public/favicon.svg','dist/favicon.svg');

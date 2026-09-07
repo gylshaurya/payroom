@@ -1,6 +1,6 @@
 # Local KeeperHub runner
 
-The runner is implemented and tested with labelled API fixtures. It has not executed a live KeeperHub payment yet. The open account handoff requires the user's email code and authenticator confirmation before the API key can be created.
+A real sponsored Sepolia payment was completed through KeeperHub on 7 September 2026. See [execution evidence](keeperhub-execution.json). The key is stored in macOS Keychain. No continuous daemon is installed.
 
 After that personal step, the operator copies only the newly created Payroom key and runs `python3 scripts/store-keeper-key.py --clipboard`. The helper validates the key format, stores it in macOS Keychain and clears that copied key from the clipboard. No key is printed or written to an environment file. The normal hidden-input mode is also available. Never put the key in chat, GitHub or browser code.
 
@@ -23,7 +23,7 @@ The existing local Hacky scheduler can invoke another bounded pass after activat
 
 ## Interrupted requests
 
-The journal lives in `.local/keeper-journal.json`, written by an atomic file replacement. An unknown result is never automatically sent again. When an execution ID is available, the next pass polls it after the server's interval hint. A completed HTTP response still needs a real matching payment receipt. The runner checks the exact module, keeper sender, invoice calldata, zero native value and Paid event, then waits for a second block before recording confirmation.
+The journal lives in `.local/keeper-journal.json`, written by an atomic file replacement. An unknown result is never automatically sent again. When an execution ID is available, the next pass polls it after the server's interval hint. A completed HTTP response still needs a real matching payment receipt. The runner checks zero native value, canonical receipt block, historical module/Safe/token code, the authorized keeper and exact paid invoice terms, the Safe module-success event and the matching token transfer. It then waits for another block. Sponsored transactions use a relayer as the outer sender, so that outer address is not treated as the keeper. A keeper change inside the payment transaction requires separate trace review.
 
 A failed or unknown execution without a usable receipt stays for review. Do not rotate its idempotency key or clear its journal. A previous confirmed record does not override a changed chain state. Eight tests cover interrupted responses, persistence failure, wrong simulation sender, payment controls, terminal API results and restart recovery. They are fixture evidence, not sponsor execution proof.
 

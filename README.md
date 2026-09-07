@@ -4,7 +4,7 @@ Payroom keeps a contributor invoice, its Safe approval and its payment receipt i
 
 [Watch the recorded preview](https://github.com/gylshaurya/payroom/releases/tag/preview-v1). It shows local payment and a separate Sepolia approval, with the missing KeeperHub execution clearly labelled.
 
-Public workspace: [gylshaurya.github.io/payroom](https://gylshaurya.github.io/payroom/). It reads the real Sepolia Safe without a login. KeeperHub execution remains pending.
+Public workspace: [gylshaurya.github.io/payroom](https://gylshaurya.github.io/payroom/). It reads the real Sepolia Safe without a login. A real KeeperHub payment is now [receipt-verified on Sepolia](docs/keeperhub-execution.json).
 
 ## Run locally
 
@@ -41,9 +41,9 @@ The contract suite has 16 tests, including 256 fuzz cases for exact transfers. I
 - Desktop and mobile invoice list, payment controls, activity and record export.
 - A documented KeeperHub direct-call adapter with stable idempotency keys, simulation and a separate receipt-status request.
 
-## What still needs live verification
+## Live integration and final demo
 
-The Safe, module and test token are deployed on Sepolia, and the public wallet/read workspace is built. See [public release](docs/public-release.md). Actual KeeperHub execution and the final integration demo remain separate release steps. The free account allowance was checked on 6 September 2026, and both paid overage caps were set to zero and verified after reload. This does not establish testnet gas sponsorship or an actual sponsored payment. See [docs/keeperhub.md](docs/keeperhub.md).
+The Safe, module and test token are deployed on Sepolia, and the public wallet/read workspace is built. See [public release](docs/public-release.md). The first KeeperHub execution is complete and verified. The user will record the final narrated integration demo. The free account allowance was checked on 6 September 2026, and both paid overage caps were set to zero and verified after reload. The 7 September execution now provides actual sponsored-payment evidence. See [docs/keeperhub.md](docs/keeperhub.md).
 
 The contract is a hackathon testnet demonstration. Use only the included test token. Allowlisting a token trusts its transfer behavior; fee-on-transfer, rebasing and malicious tokens are unsupported. This code has not received an external security audit.
 

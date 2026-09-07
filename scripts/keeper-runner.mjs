@@ -4,6 +4,7 @@ import {fileURLToPath} from 'node:url';
 import {PublicDesk} from '../public-app/core.mjs';
 import {KeeperHub} from '../src/keeperhub.mjs';
 import {KeeperRunner} from '../src/keeper-runner.mjs';
+import {keeperPaymentProof} from '../src/keeper-receipt.mjs';
 
 const directory=new URL('../.local/',import.meta.url),file=new URL('keeper-journal.json',directory),lock=new URL('keeper-runner.lock',directory);
 let desk,locked=false;
@@ -33,10 +34,7 @@ try{
     let hash=response?.receipts?.find(r=>r.verified===true&&Number(r.chainId)===11155111&&r.receiptStatus==='success')?.hash??response?.transactionHash;
     if(!hash){const logs=await desk.provider.getLogs({address:config.module,topics:[desk.module.interface.getEvent('Paid').topicHash,id],fromBlock:config.deployedBlock,toBlock:'latest'});hash=logs.at(-1)?.transactionHash;}
     if(!hash)return null;
-    const tx=await desk.provider.getTransaction(hash);
-    if(!tx||tx.from.toLowerCase()!==config.keeper.toLowerCase()||tx.to?.toLowerCase()!==config.module.toLowerCase()||tx.data!==desk.module.interface.encodeFunctionData('execute',[id])||tx.value!==0n)throw Error('Receipt sender or call does not match the expected KeeperHub invoice execution.');
-    const proof=await desk.proof(hash,'pay',id);
-    return proof?.status===1&&await desk.provider.getBlockNumber()>proof.blockNumber?proof:null;
+    return keeperPaymentProof(desk,id,hash);
   }
   await guard();const state=await desk.state();
   const runner=new KeeperRunner({api,config,journal,save,guard,receipt,readInvoice:async id=>{

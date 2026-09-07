@@ -20,7 +20,7 @@
     "module": "0xf8da57b6bf0e310550b9e7e8b261dc41ee37bd24e0acf2acb858240c21288704",
     "token": "0x0f4c0504871bff5c19ad56cfc1091c3cd888f970ac0eb4fbb4329fac68f54d3d"
   },
-  "keeperLive": false,
+  "keeperLive": true,
   "demoInvoices": [
     {
       "id": "0x8899248d27ab6a7c74ee0d3b3f8666cfebd731d41ceca30e9ac212821f593096",

@@ -1,0 +1,34 @@
+{
+  "checkedAt": "2026-09-07T10:24:50.440979+00:00",
+  "executionId": "dkav71x7qct4f4m68rt2f",
+  "status": "confirmed",
+  "simulation": {
+    "success": true,
+    "status": "simulated",
+    "from": "0xf0135c32368cee89df899b259c54b530870ca89b",
+    "to": "0x0152Dd3602b0485A3cC00450Cb559B6d2190EFa5",
+    "value": "0",
+    "gasEstimate": "136894",
+    "simulatedReturnValue": null,
+    "wouldRevert": false
+  },
+  "receipt": {
+    "hash": "0xcb58753c02543b14c73b7b091f634a97fd1bd90cdb24063ed8a01fee475e55c5",
+    "blockNumber": 11653544,
+    "blockHash": "0xa7806d3eb7cb5c9250a6e16ec9da3c44f2f3626dae72a8f2ea92b0c764cb97fb",
+    "chainId": 11155111,
+    "status": 1,
+    "keeper": "0xf0135C32368Cee89df899b259C54B530870Ca89b",
+    "invoice": "0x8899248d27ab6a7c74ee0d3b3f8666cfebd731d41ceca30e9ac212821f593096",
+    "recipient": "0xbc9CF2d96C6624890040DA54A8e42E8E2E9d4428",
+    "token": "0x8AE2D92B36D5Bf9966A6A274555AcB9944541E43",
+    "amount": "12500000",
+    "from": "0xA17cb6adb58277E5b4A44B8c1ECB449BB6614E87",
+    "to": "0x5aF5194B4b0909eB978e3Cf1e25333852277f07D",
+    "sponsored": true,
+    "gasUsed": "177430"
+  },
+  "paidDailyCap": 0,
+  "paidMonthlyCap": 0,
+  "note": "Actual KeeperHub API execution. Sponsored outer transaction; historical module code, keeper, exact invoice terms, Safe execution and token transfer independently verified."
+}
